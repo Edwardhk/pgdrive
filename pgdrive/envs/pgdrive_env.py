@@ -192,6 +192,8 @@ class PGDriveEnv(BasePGDriveEnv):
             self.main_camera.set_follow_lane(self.config["use_chase_camera_follow_lane"])
             self.main_camera.track(self.current_track_vehicle, self.pg_world)
             self.pg_world.accept("b", self.bird_view_camera)
+        if self.config["custom_camera_angle"]:
+            self.pg_world.accept("/", self.custom_view_camera)
         self.pg_world.accept("q", self.chase_another_v)
 
         # setup the detector mask
@@ -532,6 +534,9 @@ class PGDriveEnv(BasePGDriveEnv):
 
     def bird_view_camera(self):
         self.main_camera.stop_track(self.pg_world, self.current_track_vehicle)
+
+    def custom_view_camera(self):
+        self.main_camera.stop_track(self.pg_world, self.current_track_vehicle, self.config["custom_camera_angle"])
 
     def saver(self, v_id: str, actions):
         """

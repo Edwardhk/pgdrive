@@ -44,6 +44,7 @@ MULTI_AGENT_PGDRIVE_DEFAULT_CONFIG = dict(
     top_down_camera_initial_x=0,
     top_down_camera_initial_y=0,
     top_down_camera_initial_z=120,  # height
+    custom_camera_angle=None,
     traffic_density=0.,
     auto_termination=False,
     camera_height=4,
